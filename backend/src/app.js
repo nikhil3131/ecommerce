@@ -1,14 +1,25 @@
 // necessary js packages
-require('dotenv')
+require('dotenv').config()
 require('express-async-errors')
 const express = require('express')
 
 
 // importing methods and properties 
 const { connect } = require('./db/config')
+const { globalErrorHandler } = require('./middlewares/globalErrorHandler')
 
 
 const app = express()
+
+
+// route doesnot exists
+app.use('*', function(req, res){
+    res.status(404).send("route does not exists")
+})
+
+
+// global error handler
+app.use(globalErrorHandler)
 
 
 /*

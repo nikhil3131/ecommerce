@@ -2,6 +2,7 @@
 require('dotenv').config()
 require('express-async-errors')
 const express = require('express')
+const cookieParser = require('cookie-parser')
 
 
 // importing methods and properties 
@@ -10,6 +11,10 @@ const { globalErrorHandler } = require('./middlewares/globalErrorHandler')
 
 
 const app = express()
+
+
+// middlewares
+app.use(cookieParser(process.env.COOKIE_SECRET))
 
 
 // route doesnot exists

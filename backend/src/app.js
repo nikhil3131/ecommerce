@@ -8,13 +8,19 @@ const cookieParser = require('cookie-parser')
 // importing methods and properties 
 const { connect } = require('./db/config')
 const { globalErrorHandler } = require('./middlewares/globalErrorHandler')
+const adminRoutes = require('./routes/admin.route')
 
 
 const app = express()
 
 
 // middlewares
+app.use(express.json())
 app.use(cookieParser(process.env.COOKIE_SECRET))
+
+
+//routes
+app.use('/api/v1/admin', adminRoutes)
 
 
 // route doesnot exists
